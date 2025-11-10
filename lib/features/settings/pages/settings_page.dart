@@ -1,10 +1,12 @@
 import 'package:fff_app/core/app/app_state.dart';
 import 'package:fff_app/core/app/components/route_animations/route_animations.dart';
+import 'package:fff_app/core/service/package_info/package_info_service.dart';
 import 'package:fff_app/features/debug/debug_page.dart';
 import 'package:fff_app/features/settings/components/setting_list_box.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class SettingsPage extends StatelessWidget {
+class SettingsPage extends ConsumerWidget {
   const SettingsPage._();
 
   static const routeName = '/settings';
@@ -17,35 +19,43 @@ class SettingsPage extends StatelessWidget {
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final packageInfoService = ref.watch(packageInfoServiceProvider);
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('設定'),
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.symmetric(horizontal: 16),
-        child: SettingListBox(
+        child: Column(
           children: [
-            _ThemeModeButton(),
-            _ListTile(
-              leading: const Icon(Icons.menu_book),
-              title: const Text('ライセンス'),
-              onTap: () {
-                Navigator.of(context).push(
-                  RouteAnimations.noAnimation<void>(
-                    settings: const RouteSettings(name: '/license'),
-                    builder: (_) => const LicensePage(),
-                  ),
-                );
-              },
+            SettingListBox(
+              children: [
+                _ThemeModeButton(),
+                _ListTile(
+                  leading: const Icon(Icons.menu_book),
+                  title: const Text('ライセンス'),
+                  onTap: () {
+                    Navigator.of(context).push(
+                      RouteAnimations.noAnimation<void>(
+                        settings: const RouteSettings(name: '/license'),
+                        builder: (_) => const LicensePage(),
+                      ),
+                    );
+                  },
+                ),
+                _ListTile(
+                  leading: const Icon(Icons.bug_report),
+                  title: const Text('デバッグ'),
+                  onTap: () {
+                    Navigator.of(context).push(DebugPage.route());
+                  },
+                ),
+              ],
             ),
-            _ListTile(
-              leading: const Icon(Icons.bug_report),
-              title: const Text('デバッグ'),
-              onTap: () {
-                Navigator.of(context).push(DebugPage.route());
-              },
-            ),
+            SizedBox(height: 16),
+            Text('バージョン ${packageInfoService.version}'),
           ],
         ),
       ),
@@ -91,6 +101,7 @@ class _ThemeModeButton extends StatelessWidget {
     return PopupMenuButton<ThemeMode>(
       position: PopupMenuPosition.under,
       initialValue: appState.themeMode,
+      tooltip: 'テーマを変更します',
       itemBuilder: (context) => [
         PopupMenuItem(
           value: ThemeMode.light,
