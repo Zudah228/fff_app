@@ -14,6 +14,11 @@ class DebugFormModel {
   final DebugModelGender gender;
   final String? prefecture;
   final DateTime? birthday;
+
+  @override
+  String toString() {
+    return 'DebugFormModel(name: $name, email: $email, password: $password, gender: $gender, prefecture: $prefecture, birthday: $birthday)';
+  }
 }
 
 enum DebugModelGender {

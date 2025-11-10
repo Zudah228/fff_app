@@ -7,11 +7,13 @@ class SingleSelectFormField<T> extends FormField<SingleSelectValue<T>> {
   SingleSelectFormField({
     super.key,
     super.validator,
-    required super.initialValue,
+    super.initialValue,
     InputDecoration? decoration,
+    Widget? modalTitle,
     required List<SingleSelectValue<T>> values,
   }) : super(
          builder: (field) => SingleSelectField(
+           modalTitle: modalTitle,
            value: field.value,
            onChanged: (value) => field.didChange(value),
            decoration: (decoration ?? InputDecoration()).copyWith(

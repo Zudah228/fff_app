@@ -1,4 +1,4 @@
-import 'package:fff_app/core/app/components/bottom_sheet/bottom_sheet_scaffold.dart';
+import 'package:fff_app/core/app/components/bottom_sheet/selection_bottom_sheet.dart';
 import 'package:fff_app/core/app/components/form/select/single_select_field.dart';
 import 'package:flutter/material.dart';
 
@@ -24,38 +24,32 @@ class SingleSelectModelSheet<T> extends StatelessWidget {
     this.initialValue,
     required this.values,
   });
-  
+
   final Widget? title;
   final SingleSelectValue<T>? initialValue;
   final List<SingleSelectValue<T>> values;
 
   @override
   Widget build(BuildContext context) {
-    return BottomSheetScaffold(
+    return SelectionBottomSheet(
       title: title,
-      child: ListView.separated(
-        separatorBuilder: (context, index) => Divider(
-          height: 1,
-          thickness: 0.5,
-        ),
-        itemCount: values.length,
-        itemBuilder: (context, index) {
-          final value = values[index];
+      itemCount: values.length,
+      itemBuilder: (context, index) {
+        final value = values[index];
 
-          return ListTile(
-            trailing: initialValue?.value == value.value
-                ? Icon(
-                    Icons.check,
-                    color: Theme.of(context).colorScheme.primary,
-                  )
-                : SizedBox.shrink(),
-            title: Text(value.label),
-            onTap: () {
-              Navigator.of(context).pop(value);
-            },
-          );
-        },
-      ),
+        return ListTile(
+          trailing: initialValue?.value == value.value
+              ? Icon(
+                  Icons.check,
+                  color: Theme.of(context).colorScheme.primary,
+                )
+              : SizedBox.shrink(),
+          title: Text(value.label),
+          onTap: () {
+            Navigator.of(context).pop(value);
+          },
+        );
+      },
     );
   }
 }

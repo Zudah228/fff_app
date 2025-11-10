@@ -11,7 +11,6 @@ class SettingListBox extends StatelessWidget {
     final themeData = Theme.of(context);
 
     return Container(
-      padding: const EdgeInsets.symmetric(vertical: 4),
       decoration: ShapeDecoration(
         color: themeData.colorScheme.surfaceContainer,
         shape: RoundedRectangleBorder(

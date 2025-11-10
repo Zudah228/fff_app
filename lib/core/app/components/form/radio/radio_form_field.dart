@@ -6,8 +6,8 @@ export 'radio_field.dart';
 class RadioFormField<T> extends FormField<T> {
   RadioFormField({
     super.key,
-    required super.validator,
-    required super.initialValue,
+    super.validator,
+    super.initialValue,
     required List<RadioValue<T>> values,
   }) : super(
          builder: (field) => RadioField(

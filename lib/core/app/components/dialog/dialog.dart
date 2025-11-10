@@ -56,37 +56,35 @@ class CommonDialog extends StatelessWidget {
   Widget build(BuildContext context) {
     final themeData = Theme.of(context);
 
-    final effectiveContentPadding = EdgeInsets.only(
-      left: 24,
-      top: content == null
-          ? 0
-          : spaceBetweenTitleAndContent ??
-                (themeData.useMaterial3 ? 16.0 : 20.0),
-      right: 24,
-      bottom: 24,
-    );
+    const defaultPadding = EdgeInsets.symmetric(horizontal: 24);
+
+    final effectiveContentPadding =
+        EdgeInsets.only(
+          top: content == null
+              ? 0
+              : spaceBetweenTitleAndContent ??
+                    (themeData.useMaterial3 ? 16.0 : 20.0),
+
+          bottom: 24,
+        ) +
+        defaultPadding;
 
     final actions = _getActions(context);
-    final MainAxisAlignment actionsAlignment;
-    if (actions.length >= 2) {
-      actionsAlignment = MainAxisAlignment.spaceBetween;
-    } else {
-      actionsAlignment = MainAxisAlignment.center;
-    }
+    final MainAxisAlignment actionsAlignment = MainAxisAlignment.end;
 
     return AlertDialog(
       title: title != null
           ? DefaultTextStyle.merge(
-              textAlign: TextAlign.center,
-              child: Center(child: title),
+              child: title!,
             )
           : SizedBox(height: 16),
-      titlePadding: title != null ? EdgeInsets.only(top: 16) : EdgeInsets.zero,
+      titlePadding: title != null
+          ? EdgeInsets.only(top: 16) + defaultPadding
+          : EdgeInsets.zero,
       titleTextStyle: content == null ? themeData.textTheme.titleMedium : null,
       contentPadding: effectiveContentPadding,
       content: content != null
           ? DefaultTextStyle.merge(
-              textAlign: TextAlign.center,
               child: content!,
             )
           : SizedBox.shrink(),

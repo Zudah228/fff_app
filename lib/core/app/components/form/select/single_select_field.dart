@@ -24,12 +24,14 @@ class SingleSelectValue<T> {
 class SingleSelectField<T> extends StatelessWidget {
   const SingleSelectField({
     super.key,
+    this.modalTitle,
     this.value,
     required this.onChanged,
     required this.values,
     this.decoration,
   });
 
+  final Widget? modalTitle;
   final SingleSelectValue<T>? value;
   final List<SingleSelectValue<T>> values;
   final ValueChanged<SingleSelectValue<T>> onChanged;
@@ -51,6 +53,7 @@ class SingleSelectField<T> extends StatelessWidget {
           context: context,
           values: values,
           initialValue: value,
+          title: modalTitle,
         );
 
         if (selectedValue != null) {
