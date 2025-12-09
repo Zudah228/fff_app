@@ -1,8 +1,8 @@
 import 'package:fff_app/core/app/components/future/loading_indicator.dart';
 import 'package:flutter/material.dart';
 
-class FutureSwitcher<T> extends StatefulWidget {
-  const FutureSwitcher({
+class FutureDataBuilder<T> extends StatefulWidget {
+  const FutureDataBuilder({
     super.key,
     required this.fetch,
     required this.builder,
@@ -10,13 +10,13 @@ class FutureSwitcher<T> extends StatefulWidget {
     this.loadingBuilder,
   });
 
-  factory FutureSwitcher.dataOrNull({
+  factory FutureDataBuilder.dataOrNull({
     Key? key,
     required Future<T> Function() fetch,
     required Widget Function(T? data) builder,
     Widget Function()? loadingBuilder,
   }) {
-    return FutureSwitcher(
+    return FutureDataBuilder(
       key: key,
       fetch: fetch,
       builder: builder,
@@ -33,10 +33,10 @@ class FutureSwitcher<T> extends StatefulWidget {
   final Widget Function(Object? error, StackTrace? stackTrace) errorBuilder;
 
   @override
-  State<FutureSwitcher<T>> createState() => _FutureSwitcherState<T>();
+  State<FutureDataBuilder<T>> createState() => _FutureDataBuilderState<T>();
 }
 
-class _FutureSwitcherState<T> extends State<FutureSwitcher<T>> {
+class _FutureDataBuilderState<T> extends State<FutureDataBuilder<T>> {
   Future<T?>? _future;
 
   @override
