@@ -1,16 +1,16 @@
 import 'package:fff_app/core/app/app.dart';
 import 'package:fff_app/core/app/app_state.dart';
+import 'package:fff_app/core/locales/locale.dart';
 import 'package:fff_app/core/service/package_info/package_info_service.dart';
 import 'package:fff_app/core/service/shared_preferences/shared_preferences_service.dart';
 import 'package:fff_app/core/utils/riverpod/riverpod_log_observer.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:intl/intl.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  Intl.defaultLocale = 'ja_JP';
+  setLocale('ja_JP');
 
   late final PackageInfoService packageInfoService;
   late final SharedPreferencesService sharedPreferencesService;
