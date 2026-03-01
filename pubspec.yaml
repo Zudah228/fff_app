@@ -27,6 +27,7 @@ dependencies:
   simple_logger: ^1.10.0
   url_launcher: ^6.3.2
   custom_refresh_indicator: ^4.0.1
+  async: ^2.13.0
 
 dev_dependencies:
   flutter_test:

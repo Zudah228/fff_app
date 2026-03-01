@@ -239,8 +239,7 @@ class _LoadingIndicatorState extends State<_LoadingIndicator> {
               child: Container(
                 height: math.max(_outRange, 0),
                 padding: EdgeInsets.only(
-                  bottom:
-                      32 + MediaQuery.paddingOf(context).bottom,
+                  bottom: 32 + MediaQuery.paddingOf(context).bottom,
                   top: 4,
                 ),
                 child: const OverflowBox(
