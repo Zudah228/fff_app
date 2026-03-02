@@ -1,7 +1,7 @@
 import 'package:fff_app/core/app/components/dialog/confirm_dialog.dart';
+import 'package:fff_app/core/app/components/form/custom_form.dart';
 import 'package:fff_app/core/app/components/form/date_time/date_form_field.dart';
 import 'package:fff_app/core/app/components/form/field_decorator.dart';
-import 'package:fff_app/core/app/components/form/form_scaffold.dart';
 import 'package:fff_app/core/app/components/form/form_validator.dart';
 import 'package:fff_app/core/app/components/form/obscure_toggle_button.dart';
 import 'package:fff_app/core/app/components/form/radio/radio_form_field.dart';
@@ -10,7 +10,7 @@ import 'package:fff_app/core/utils/prefectures.dart';
 import 'package:fff_app/features/debug_form/models/debug_form_model.dart';
 import 'package:flutter/material.dart';
 
-class DebugForm extends FormScaffold<DebugFormModel> {
+class DebugForm extends CustomForm<DebugFormModel> {
   const DebugForm({
     super.key,
     required super.initialValue,
@@ -18,10 +18,10 @@ class DebugForm extends FormScaffold<DebugFormModel> {
   });
 
   @override
-  FormScaffoldState<DebugFormModel> createState() => DebugFormState();
+  CustomFormState<DebugFormModel> createState() => DebugFormState();
 }
 
-class DebugFormState extends FormScaffoldState<DebugFormModel> {
+class DebugFormState extends CustomFormState<DebugFormModel> {
   late final TextEditingController _nameController;
   late final TextEditingController _emailController;
   late final TextEditingController _passwordController;
@@ -144,11 +144,6 @@ class DebugFormState extends FormScaffoldState<DebugFormModel> {
   }
 
   @override
-  bool validate() {
-    return formState.validate();
-  }
-
-  @override
   bool get canPop => !isDirty;
 
   @override
@@ -161,7 +156,7 @@ class DebugFormState extends FormScaffoldState<DebugFormModel> {
         if (isDirty) {
           final confirmed = await showConfirmDialog(
             context,
-            title: Text('変更内容は破棄されます'),
+            content: Text('変更内容は破棄されます'),
           );
 
           if (confirmed && mounted) {

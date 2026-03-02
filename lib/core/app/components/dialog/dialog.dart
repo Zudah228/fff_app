@@ -1,3 +1,5 @@
+import 'package:fff_app/core/app/components/button/primary_button.dart';
+import 'package:fff_app/core/app/components/button/tertiary_button.dart';
 import 'package:flutter/material.dart';
 
 class CommonDialog extends StatelessWidget {
@@ -16,38 +18,27 @@ class CommonDialog extends StatelessWidget {
   final CommonDialogAction? primaryAction;
   final CommonDialogAction? cancelAction;
 
-  static Size get _actionMinimumSize => const Size(
-    124,
-    40,
-  );
-  static const _minDeviceSize = 375;
-
-  Size _getActionMinimumSize(BuildContext context) {
-    final screenWidth = MediaQuery.of(context).size.width;
-    final buttonWidth = screenWidth <= _minDeviceSize
-        ? MediaQuery.of(context).size.width * 0.28
-        : _actionMinimumSize.width;
-    return Size(buttonWidth, _actionMinimumSize.height);
-  }
-
   List<Widget> _getActions(BuildContext context) {
-    final actionMinimumSize = _getActionMinimumSize(context);
+    const constraints = BoxConstraints(
+      minWidth: 100,
+      minHeight: 40,
+    );
     return [
       if (cancelAction case final action?)
-        OutlinedButton(
-          onPressed: action.onTap,
-          style: OutlinedButton.styleFrom(
-            minimumSize: actionMinimumSize,
+        ConstrainedBox(
+          constraints: constraints,
+          child: TertiaryButton(
+            onPressed: action.onTap,
+            child: Text(action.label),
           ),
-          child: Text(action.label),
         ),
       if (primaryAction case final action?)
-        FilledButton(
-          onPressed: action.onTap,
-          style: FilledButton.styleFrom(
-            minimumSize: actionMinimumSize,
+        ConstrainedBox(
+          constraints: constraints,
+          child: PrimaryButton(
+            onPressed: action.onTap,
+            child: Text(action.label),
           ),
-          child: Text(action.label),
         ),
     ];
   }
@@ -88,7 +79,7 @@ class CommonDialog extends StatelessWidget {
               child: content!,
             )
           : SizedBox.shrink(),
-
+      contentTextStyle: themeData.textTheme.bodyLarge,
       actions: actions,
       actionsAlignment: actionsAlignment,
     );

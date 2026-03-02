@@ -56,7 +56,7 @@ class ValidationBuilder {
     return _add((Object? v) {
       if (v == null) return null;
       if (v is! String) return null;
-      return regExp.hasMatch(v) ? '無効なフォーマットです' : null;
+      return regExp.hasMatch(v) ? null : '無効なフォーマットです';
     });
   }
 

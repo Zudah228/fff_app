@@ -1,6 +1,4 @@
-import 'package:fff_app/core/app/components/button/tertiary_button.dart';
-import 'package:fff_app/core/app/components/expanded_single_child_scroll_view.dart';
-import 'package:fff_app/core/app/components/form/hooks/use_form_listener.dart';
+import 'package:fff_app/core/app/components/form/form_scaffold.dart';
 import 'package:fff_app/core/app/components/route_animations/route_animations.dart';
 import 'package:fff_app/features/debug_form/components/debug_form.dart';
 import 'package:fff_app/features/debug_form/models/debug_form_model.dart';
@@ -22,33 +20,19 @@ class DebugFormPage extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
-    final listener = useFormListener<DebugFormState>();
-
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('フォーム'),
-        actions: [
-          TertiaryButton(
-            onPressed: listener.isValid
-                ? () {
-                    Navigator.of(context).pop();
-                  }
-                : null,
-            child: const Text('保存'),
-          ),
-        ],
-      ),
-      body: ExpandedSingleChildScrollView(
-        padding: const EdgeInsets.symmetric(horizontal: 16),
-        child: DebugForm(
-          listener: listener,
-          initialValue: const DebugFormModel(
-            name: '田中太郎',
-            email: '',
-            password: 'パスワード',
-            gender: DebugModelGender.male,
-          ),
+    return FormScaffold(
+      title: const Text('フォーム'),
+      save: (listener) {
+        Navigator.of(context).pop();
+      },
+      formBuilder: (listener) => DebugForm(
+        initialValue: const DebugFormModel(
+          name: '田中太郎',
+          email: '',
+          password: 'パスワード',
+          gender: DebugModelGender.male,
         ),
+        listener: listener,
       ),
     );
   }

@@ -1,9 +1,9 @@
 import 'package:fff_app/core/app/components/form/form_listener.dart';
-import 'package:fff_app/core/app/components/form/form_scaffold.dart';
+import 'package:fff_app/core/app/components/form/custom_form.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 
-FormListener<T> useFormListener<T extends FormScaffoldState<dynamic>>() {
+FormListener<T> useFormListener<T extends CustomFormState<dynamic>>() {
   final listener = use(_FormListerHook<T>());
 
   useListenable(listener);
@@ -11,7 +11,7 @@ FormListener<T> useFormListener<T extends FormScaffoldState<dynamic>>() {
   return listener;
 }
 
-class _FormListerHook<T extends FormScaffoldState<dynamic>>
+class _FormListerHook<T extends CustomFormState<dynamic>>
     extends Hook<FormListener<T>> {
   @override
   HookState<FormListener<T>, Hook<FormListener<T>>> createState() {
@@ -19,7 +19,7 @@ class _FormListerHook<T extends FormScaffoldState<dynamic>>
   }
 }
 
-class _FormListerHookState<T extends FormScaffoldState<dynamic>>
+class _FormListerHookState<T extends CustomFormState<dynamic>>
     extends HookState<FormListener<T>, Hook<FormListener<T>>> {
   late FormListener<T> _listener;
 

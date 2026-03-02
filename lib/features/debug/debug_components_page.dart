@@ -2,6 +2,8 @@ import 'package:fff_app/core/app/components/button/error_button.dart';
 import 'package:fff_app/core/app/components/button/primary_button.dart';
 import 'package:fff_app/core/app/components/button/secondary_button.dart';
 import 'package:fff_app/core/app/components/button/tertiary_button.dart';
+import 'package:fff_app/core/app/components/button_unit/button_inner.dart';
+import 'package:fff_app/core/app/components/dialog/confirm_dialog.dart';
 import 'package:fff_app/core/app/components/dialog/dialog.dart';
 import 'package:fff_app/core/app/components/form/field_decorator.dart';
 import 'package:fff_app/core/app/components/form/radio/radio_form_field.dart';
@@ -37,18 +39,65 @@ class DebugComponentsPage extends StatelessWidget {
             children: [
               // Button
               _Headline(child: Text('Button')),
-              Wrap(
+              SizedBox(height: 8),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 spacing: 16,
                 children: [
+                  PrimaryButton.large(
+                    child: const Text('Primary Button'),
+                    onPressed: () {},
+                  ),
                   PrimaryButton(
                     child: const Text('Primary Button'),
+                    onPressed: () {},
+                  ),
+                  PrimaryButton(
+                    child: ButtonInner(
+                      label: const Text('Primary Button'),
+                      icon: const Icon(Icons.add),
+                    ),
+                    onPressed: () {},
+                  ),
+                  PrimaryButton.small(
+                    child: const Text('Primary Button'),
+                    onPressed: () {},
+                  ),
+                  SecondaryButton.large(
+                    child: const Text('Secondary Button'),
                     onPressed: () {},
                   ),
                   SecondaryButton(
                     child: const Text('Secondary Button'),
                     onPressed: () {},
                   ),
+                  SecondaryButton(
+                    child: ButtonInner(
+                      label: const Text('Secondary Button'),
+                      icon: const Icon(Icons.add),
+                    ),
+                    onPressed: () {},
+                  ),
+                  SecondaryButton.small(
+                    child: const Text('Secondary Button'),
+                    onPressed: () {},
+                  ),
+                  TertiaryButton.large(
+                    child: const Text('Tertiary Button'),
+                    onPressed: () {},
+                  ),
                   TertiaryButton(
+                    child: const Text('Tertiary Button'),
+                    onPressed: () {},
+                  ),
+                  TertiaryButton(
+                    child: ButtonInner(
+                      label: const Text('Tertiary Button'),
+                      icon: const Icon(Icons.add),
+                    ),
+                    onPressed: () {},
+                  ),
+                  TertiaryButton.small(
                     child: const Text('Tertiary Button'),
                     onPressed: () {},
                   ),
@@ -100,6 +149,15 @@ class DebugComponentsPage extends StatelessWidget {
                         },
                       ),
                     ),
+                  );
+                },
+              ),
+              PrimaryButton(
+                child: const Text('Show Confirm Dialog'),
+                onPressed: () {
+                  showConfirmDialog(
+                    context,
+                    content: Text('Dialog content'),
                   );
                 },
               ),

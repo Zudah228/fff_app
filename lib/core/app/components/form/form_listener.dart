@@ -1,7 +1,7 @@
-import 'package:fff_app/core/app/components/form/form_scaffold.dart';
+import 'package:fff_app/core/app/components/form/custom_form.dart';
 import 'package:flutter/widgets.dart';
 
-class FormListener<T extends FormScaffoldState<dynamic>> with ChangeNotifier {
+class FormListener<T extends CustomFormState<dynamic>> with ChangeNotifier {
   T? _state;
 
   T get state => _state!;
@@ -15,5 +15,5 @@ class FormListener<T extends FormScaffoldState<dynamic>> with ChangeNotifier {
     notifyListeners();
   }
 
-  bool get isValid => _state?.isValid ?? false;
+  bool get isValid => _state?.isValid ?? true;
 }

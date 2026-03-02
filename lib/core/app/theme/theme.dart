@@ -33,11 +33,24 @@ abstract final class AppThemeData {
     return foundation.copyWith(
       cardTheme: CardThemeData(
         clipBehavior: Clip.antiAlias,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.all(
+            SmoothRadius(cornerRadius: 8, cornerSmoothing: 0.2),
+          ),
+        ),
+        elevation: 0,
       ),
       bottomSheetTheme: BottomSheetThemeData(
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.vertical(
             top: SmoothRadius(cornerRadius: 16, cornerSmoothing: 0.2),
+          ),
+        ),
+      ),
+      listTileTheme: ListTileThemeData(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.all(
+            SmoothRadius(cornerRadius: 8, cornerSmoothing: 0.2),
           ),
         ),
       ),
@@ -48,6 +61,11 @@ abstract final class AppThemeData {
         focusedBorder: inputBorder(BorderSide(color: colorScheme.primary)),
         errorBorder: inputBorder(BorderSide(color: colorScheme.outline)),
         focusedErrorBorder: inputBorder(BorderSide(color: colorScheme.error)),
+      ),
+      outlinedButtonTheme: OutlinedButtonThemeData(
+        style: OutlinedButton.styleFrom(
+          foregroundColor: colorScheme.onSurface,
+        ),
       ),
     );
   }
