@@ -28,6 +28,7 @@ dependencies:
   url_launcher: ^6.3.2
   custom_refresh_indicator: ^4.0.1
   async: ^2.13.0
+  change_case: ^2.2.0
 
 dev_dependencies:
   flutter_test:
@@ -40,6 +41,7 @@ dev_dependencies:
   riverpod_lint: ^3.0.3
   rename_app: ^1.6.5
   flutter_launcher_icons: ^0.14.4
+  alchemist: ^0.13.0
 
 flutter:
   uses-material-design: true
