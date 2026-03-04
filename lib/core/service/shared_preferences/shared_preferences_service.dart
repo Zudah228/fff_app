@@ -1,13 +1,13 @@
-
 import 'package:fff_app/core/service/shared_preferences/shared_preferences_key.dart';
 import 'package:riverpod/riverpod.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-final sharedPreferencesServiceProvider = Provider.autoDispose<SharedPreferencesService>((ref) {
-  throw UnimplementedError(
-    'SharedPreferencesService.init() を実行して sharedPreferencesServiceProvider を override してください',
-  );
-});
+final sharedPreferencesServiceProvider =
+    Provider.autoDispose<SharedPreferencesService>((ref) {
+      throw UnimplementedError(
+        'SharedPreferencesService.init() を実行して sharedPreferencesServiceProvider を override してください',
+      );
+    });
 
 class SharedPreferencesService {
   SharedPreferencesService(this._prefs);
