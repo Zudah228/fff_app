@@ -10,7 +10,7 @@ class RequiredLabel extends StatelessWidget {
     return Text(
       '必須',
       style: themeData.textTheme.labelMedium!.copyWith(
-        color: themeData.colorScheme.secondary,
+        color: themeData.colorScheme.error,
       ),
     );
   }

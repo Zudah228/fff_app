@@ -1,20 +1,15 @@
+import 'package:fff_app/core/app/theme/color_schemes.dart';
 import 'package:fff_app/core/app/theme/text_theme.dart';
 import 'package:figma_squircle/figma_squircle.dart';
 import 'package:flutter/material.dart';
 
 abstract final class AppThemeData {
   static ThemeData get light {
-    final colorScheme = ColorScheme.fromSeed(seedColor: Colors.blue);
-
-    return _base(colorScheme);
+    return _base(ProjectColorSchemes.blue.light);
   }
 
   static ThemeData get dark {
-    final colorScheme = ColorScheme.fromSeed(
-      seedColor: Colors.blue,
-      brightness: Brightness.dark,
-    );
-    return _base(colorScheme);
+    return _base(ProjectColorSchemes.blue.dark);
   }
 
   static ThemeData _base(ColorScheme colorScheme) {
@@ -33,6 +28,7 @@ abstract final class AppThemeData {
     return foundation.copyWith(
       cardTheme: CardThemeData(
         clipBehavior: Clip.antiAlias,
+        color: colorScheme.surfaceContainerHighest,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.all(
             SmoothRadius(cornerRadius: 8, cornerSmoothing: 0.2),

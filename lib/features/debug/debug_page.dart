@@ -1,5 +1,6 @@
 import 'package:fff_app/core/app/components/route_animations/route_animations.dart';
 import 'package:fff_app/core/app/components/separator.dart';
+import 'package:fff_app/features/debug/debug_color_page.dart';
 import 'package:fff_app/features/debug/debug_components_page.dart';
 import 'package:fff_app/features/debug_form/pages/debug_form_page.dart';
 import 'package:flutter/material.dart';
@@ -37,6 +38,13 @@ class DebugPage extends StatelessWidget {
             title: const Text('フォーム'),
             onTap: () {
               Navigator.push(context, DebugFormPage.route());
+            },
+          ),
+          _ListTile(
+            leading: const Icon(Icons.color_lens),
+            title: const Text('カラー'),
+            onTap: () {
+              Navigator.push(context, DebugColorPage.route());
             },
           ),
         ].separatedWith(const SizedBox(height: 16)),
