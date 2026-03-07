@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:fff_app/core/app/app.dart';
 import 'package:fff_app/core/app/app_state.dart';
 import 'package:fff_app/core/locales/locale.dart';
@@ -10,7 +12,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  setLocale('ja_JP');
+  setLocale(Platform.localeName);
 
   late final PackageInfoService packageInfoService;
   late final SharedPreferencesService sharedPreferencesService;
